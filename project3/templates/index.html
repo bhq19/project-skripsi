@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediksi Harga Saham</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Prediksi Harga Saham</h1>
+
+    <form action="/predict" method="post">
+        <label for="stock_symbol">Simbol Saham:</label>
+        <input type="text" id="stock_symbol" name="stock_symbol" required>
+        <br>
+        <label for="input_date">Tanggal Input:</label>
+        <input type="date" id="input_date" name="input_date" required>
+        <br>
+        <input type="submit" value="Prediksi">
+    </form>
+
+    {% if prediction %}
+    <h2>Prediksi Harga Saham:</h2>
+    <p>{{ prediction }}</p>
+    <br>
+    <h2>Grafik Harga Saham:</h2>
+    <img src="{{ plot_path }}" alt="Grafik Harga Saham">
+    {% endif %}
+
+    {% if error %}
+    <h2>Error:</h2>
+    <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>
